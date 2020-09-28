@@ -17,5 +17,6 @@ def cmt(request):
         fs.save(uploaded_file.name, uploaded_file)
 
         data = extractInfoFromImage("media/{}".format(uploaded_file.name))
+        print(data)
         # process
         return JsonResponse(data)

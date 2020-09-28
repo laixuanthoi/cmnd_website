@@ -8,7 +8,7 @@ import glob
 
 config = Cfg.load_config_from_name('vgg_transformer')
 config['weights'] = 'https://drive.google.com/uc?id=13327Y1tz1ohsm5YZMyXVMPIOjoOA0OaA'
-config['device'] = 'cpu'
+config['device'] = 'cuda:0'
 config['predictor']['beamsearch'] = False
 
 detector = Predictor(config)
@@ -29,5 +29,5 @@ for f in glob.glob("image/*.JPG"):
     start = time.time()
     s = detector.predict(pil_img)
     print(s, "predicted: ", time.time()-start)
-    # cv2.imshow("image", img)
-    # cv2.waitKey(0)
+    cv2.imshow("image", img)
+    cv2.waitKey(0)

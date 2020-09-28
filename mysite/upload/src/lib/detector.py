@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
-# from model import Model
 from upload.src.lib.model import Model
-from upload.src.lib.reader import READER
 
 
 line_height = 20
