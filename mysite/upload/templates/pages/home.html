@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container py-5">
+      <!-- For demo purpose -->
+      <header class="text-white text-center">
+        <h1 class="display-4">Vietnamese Id Card Vision</h1>
+        <p class="lead mb-0">
+          Dự án nhận diện thông tin trên chứng minh nhân dân
+        </p>
+        <p class="mb-4 font-weight-light">
+          Thông tin dự án
+          <a href="#" class="text-white">
+            <u>Hướng dẫn</u>
+          </a>
+        </p>
+        <!-- <img
+          src="{% static 'assets/image/cmnd.png' %} "
+          alt=""
+          width="300px"
+          class="mb-4"
+        /> -->
+      </header>
+      <div class="row py-4">
+        <div class="col-lg-6 mx-auto">
+          <!-- Upload image input-->
+          <div class="input-group mb-3 px-2 py-2 rounded bg-white shadow-sm">
+            <input
+              id="upload"
+              type="file"
+              onchange="readURL(this);"
+              class="form-control border-0"
+            />
+            <label
+              id="upload-label"
+              for="upload"
+              class="font-weight-light text-muted"
+              >Chọn tệp</label
+            >
+            <div class="input-group-append">
+              <label for="upload" class="btn btn-light m-0 rounded px-4">
+                <i class="fa fa-cloud-upload mr-2 text-muted"></i
+                ><small class="text-uppercase font-weight-bold text-muted"
+                  >Chọn tệp</small
+                ></label
+              >
+            </div>
+          </div>
+
+          <!-- Uploaded image area-->
+          <p class="font-italic text-white text-center">
+            Thông tin sẽ được hiển thị bên dưới
+          </p>
+          <div class="loader mt-5 mx-auto"></div>
+          <div class="info-wrap">
+            <div class="image-area mt-2">
+              <img
+                id="imageResult"
+                src="{% static 'assets/image/cmnd.png' %}"
+                width="400px"
+                class="img-fluid rounded shadow-sm mx-auto d-block"
+              />
+            </div>
+
+            <div class="info-area px-3 my-2 text-white">
+              <ul style="list-style: none">
+                <li>
+                  <strong>Mã số:</strong
+                  ><span class="info-text" id="maso">N/A</span>
+                </li>
+                <li>
+                  <strong>Họ tên:</strong
+                  ><span class="info-text" id="hoten">N/A</span>
+                </li>
+                <li>
+                  <strong>Ngày sinh:</strong
+                  ><span class="info-text" id="ngaysinh">N/A</span>
+                </li>
+                <li>
+                  <strong>Nguyên quán:</strong
+                  ><span class="info-text" id="nguyenquan">N/A</span>
+                </li>
+                <li>
+                  <strong>Địa chỉ:</strong
+                  ><span class="info-text" id="diachi">N/A</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'assets/js/upload.js'%}"></script>
+  </body>
+</html>
