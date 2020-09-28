@@ -2,12 +2,9 @@ import numpy as np
 import argparse
 import time
 import cv2
-# from lib.cropper import CROPPER
-# from lib.detector import DETECTOR
-# from lib.reader import READER
 from upload.src.lib.cropper import CROPPER
 from upload.src.lib.detector import DETECTOR
-from upload.src.lib.reader import READER
+# from upload.src.lib.reader import READER
 import glob
 import os
 
@@ -35,7 +32,7 @@ cropper = CROPPER(cropper_config["configPath"],
 detector = DETECTOR(detector_config["configPath"],
                     detector_config["weightPath"], detector_config["classPath"])
 
-reader = READER()
+# reader = READER()
 
 
 def extractInfoFromImage(path):
@@ -56,10 +53,10 @@ def extractInfoFromImage(path):
     hinh_imgs, maso_imgs, hoten_imgs, ngaysinh_imgs, nguyenquan_imgs, diachi_imgs = detector.detect(
         cropped_img, detector_config["confidence_threshold"], detector_config["nms_threshold"])
 
-    data["info"]["maso"] = reader.readMultiNumber(maso_imgs)
-    data["info"]["hoten"] = ' '.join(reader.readMultiText(hoten_imgs))
-    data["info"]["ngaysinh"] = '-'.join(reader.readMultiNumber(ngaysinh_imgs))
-    data["info"]["nguyenquan"] = ' '.join(
-        reader.readMultiText(nguyenquan_imgs))
-    data["info"]["diachi"] = ' '.join(reader.readMultiText(diachi_imgs))
+    # data["info"]["maso"] = reader.readMultiNumber(maso_imgs)
+    # data["info"]["hoten"] = ' '.join(reader.readMultiText(hoten_imgs))
+    # data["info"]["ngaysinh"] = '-'.join(reader.readMultiNumber(ngaysinh_imgs))
+    # data["info"]["nguyenquan"] = ' '.join(
+    #     reader.readMultiText(nguyenquan_imgs))
+    # data["info"]["diachi"] = ' '.join(reader.readMultiText(diachi_imgs))
     return data
