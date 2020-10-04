@@ -28,21 +28,75 @@ def checkoverLapse(box1, box2):
     return False
 
 
-def sortBoxPosition(arr):
-    new_arr = arr
+# def sortBoxPosition(arr):
+#     new_arr = arr
+#     n = len(arr)
+#     for i in range(0, n-1):
+#         for j in range(i+1, n):
+#             mid_i = arr[i][1] + arr[i][3]//2
+#             mid_j = arr[j][1] + arr[j][3]//2
+#             if checkoverLapse(arr[i], arr[j]):
+#                 if arr[i][0] > arr[j][0]:
+#                     new_arr[i], new_arr[j] = swap(new_arr[i], new_arr[j])
+#             else:
+#                 if arr[i][1] > arr[j][1]:
+#                     new_arr[i], new_arr[j] = swap(new_arr[i], new_arr[j])
+#     return new_arr
+
+def sortBoxPosition(lst, rowHeight=15):
+    arr = lst.copy()
     n = len(arr)
     for i in range(0, n-1):
         for j in range(i+1, n):
-            mid_i = arr[i][1] + arr[i][3]//2
-            mid_j = arr[j][1] + arr[j][3]//2
-            if checkoverLapse(arr[i], arr[j]):
+            if abs(arr[i][1] - arr[j][1]) <= rowHeight:
                 if arr[i][0] > arr[j][0]:
-                    new_arr[i], new_arr[j] = swap(new_arr[i], new_arr[j])
+                    arr[i],arr[j] = swap(arr[i], arr[j]) 
             else:
                 if arr[i][1] > arr[j][1]:
-                    new_arr[i], new_arr[j] = swap(new_arr[i], new_arr[j])
-    return new_arr
+                    arr[i],arr[j] = swap(arr[i], arr[j]) 
+    return arr
+#     print("before", lst)
+#     print("after", arr)
+#     return arr
+# import scipy.spatial.distance as distance
+ 
+# def get_row_wise_boxes(bboxes):
+#     i = 0  # for looping over all the bounding boxes present
+#     j = 1  # for checking the next box is in same row as the previous box
+#     box = []  # temp variable for storing the collected boxes of the same row
+#     row_list = []  # list of list for row wise boxes
+#     bboxes = sorted(bboxes, key=lambda k: [k[3], k[2]])  # sorting based on ymin coordinate
+#     while i < len(bboxes) and j < len(bboxes):  # boundary condition for the loop
+#         # approximating error distance in Y-AXIS direction for boxes
+#         # this threshold for considering a box in same row I have considered some approximation around 15
+#         if abs(bboxes[j][3] - bboxes[i][3]) <= 25:
+#             # present in a row.
+#             # we go on adding the boxes which are in same row to this lis
+#             box.append(bboxes[j - 1])
+#             j += 1
+#         else:  # if the box is not present in the same row.
+#             # we append the last box which stored in the box
+#             box.append(bboxes[j - 1])
+#             row_list.append(box)  # append to all the row boxes to another list
+#             # the pointer should go to the box which will come in the next row.
+#             i += len(box)
+#             j = j + 1  # increasing the pointer counter of the box
+#             box = []  # emptying the temporary variable box list.
+#     # at the end the of loop after exiting every page last combined list will be there in the list
+#     if j - 1 < len(bboxes):
+#         box.append(bboxes[j - 1])  # append that last box to the list
+#     if box:  # checking for if box is not empty then only appending the whole row boxes to row_list variable
+#         row_list.append(box)
+#     return row_list
 
+# def sortBoxPosition(rects):
+#     bounding_boxes = list(map(lambda x: [x[0],x[1], x[0] + x[2], x[1] + x[3]], rects))
+#     row_wise_boxes = get_row_wise_boxes(bounding_boxes)
+#     final_sorted_list = []
+#     for row in row_wise_boxes:
+#         # print(row)
+#         final_sorted_list.extend(sorted(row, key=lambda x: x[1]))  # sort each individual row based xmin coordinate
+#     print(bounding_boxes, "----", final_sorted_list)
 
 # def sort_and_overlapse(arr):
 #     new_arr = []
@@ -85,6 +139,7 @@ class DETECTOR:
         diachi_candidate_boxes = []
         H, W = image.shape[:2]
         for clss, box in zip(classes, boxes):
+            box = list(box)
             if clss == 0:
                 hinh_candidate_boxes.append(box)
             if clss == 1:  # maso

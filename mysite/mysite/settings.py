@@ -28,8 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-socke.tconnect("awdawd")
-
 # Application definition
 
 INSTALLED_APPS = [
