@@ -6,7 +6,7 @@ from upload.src.lib.cropper import CROPPER
 from upload.src.lib.detector import DETECTOR
 import glob
 import os
-# from upload.src.lib.reader import readText
+from upload.src.lib.reader import readText
 
 
 cropper_config = {
@@ -50,11 +50,11 @@ def extractInfoFromImage(path):
         return data
     hinh_imgs, maso_imgs, hoten_imgs, ngaysinh_imgs, nguyenquan_imgs, diachi_imgs = detector.detect(
         cropped_img, detector_config["confidence_threshold"], detector_config["nms_threshold"])
-    
-    # data["info"]["maso"] = readText(maso_imgs)
-    # data["info"]["hoten"] = ' '.join(readText(hoten_imgs))
-    # data["info"]["ngaysinh"] = '-'.join(readText(ngaysinh_imgs))
-    # data["info"]["nguyenquan"] = ' '.join(
-    #     readText(nguyenquan_imgs))
-    # data["info"]["diachi"] = ' '.join(readText(diachi_imgs))
+
+    data["info"]["maso"] = readText(maso_imgs)
+    data["info"]["hoten"] = ' '.join(readText(hoten_imgs))
+    data["info"]["ngaysinh"] = '-'.join(readText(ngaysinh_imgs))
+    data["info"]["nguyenquan"] = ' '.join(
+        readText(nguyenquan_imgs))
+    data["info"]["diachi"] = ' '.join(readText(diachi_imgs))
     return data
