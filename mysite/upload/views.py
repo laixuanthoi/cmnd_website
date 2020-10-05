@@ -14,9 +14,10 @@ def cmt(request):
     if request.method == "POST":
         uploaded_file = request.FILES['image']
         fs = FileSystemStorage()
-        fs.save(uploaded_file.name, uploaded_file)
+        fName = fs.get_available_name(uploaded_file.name)
+        fs.save(fName, uploaded_file)
 
-        data = extractInfoFromImage("media/{}".format(uploaded_file.name))
+        data = extractInfoFromImage("media/{}".format(fName))
         print(data)
         # process
         return JsonResponse(data)
