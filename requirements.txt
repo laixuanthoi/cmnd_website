@@ -1,3 +1,4 @@
 vietocr==0.1.9
 django
 opencv-python
+pyyaml
